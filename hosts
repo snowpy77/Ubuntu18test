@@ -1,0 +1,7 @@
+[servers]
+worker1 ansible_host=192.168.2.101
+worker2 ansible_host=192.168.2.102
+master  ansible_host=192.168.2.100
+test	ansible_host=192.168.2.212
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3

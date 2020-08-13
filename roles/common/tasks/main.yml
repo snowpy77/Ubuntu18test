@@ -1,0 +1,29 @@
+---
+# tasks file for common
+- name: Change repo for ubuntu18 to NUC
+  copy:
+    src: sources.list
+    dest: /etc/apt/
+    backup: yes
+
+- name: Add Docker GPG key from ansible server
+  apt_key:
+    data: "{{ lookup('file', 'docker.gpg') }}"
+    state: present
+
+- name: Update repo and upgrade packages
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: Install Packages
+  apt:
+    name: docker-ce
+
+- name: add user to docker group
+  user:
+    name: casa
+    groups: docker
+    append: yes
+
+
